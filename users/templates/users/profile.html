@@ -1,0 +1,43 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% if u_form.username.errors %}
+    {% for error in u_form.username.errors %}
+        <div class="alert alert-danger">{{ error|escape }}</div>
+    {% endfor %}
+{% endif %}
+{% if p_form.username.errors %}
+    {% for error in p_form.username.errors %}
+        <div class="alert alert-danger">{{ error|escape }}</div>
+    {% endfor %}
+{% endif %}
+<div class="content-section">
+    <div class="media text-center">
+        <img class="rounded-circle account-img" src="{{user.profile.image.url}}" alt="">
+        <div class="media-body">
+            <h2 class="account-heading">{{user.username}}</h2>
+            <p class="text-secondary">{{user.email}}</p>
+        </div>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="border-bottom border-top mb-4">Profile Info</legend>
+            <div class="form-outline mb-4">
+                <input type="text" id="username" name="username" class="form-control form-control-lg" value="{{u_form.username.value}}" />
+                <label class="form-label" for="formControlLg">Username</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="email" id="email" name="email" class="form-control form-control-lg" value="{{u_form.email.value}}" />
+                <label class="form-label" for="formControlLg">Email</label>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="btn btn-outline-primary" data-mdb-ripple-color="dark">New Image</label>
+                <input type="file" name="image" accept="image/*" id="image" style="display: none;">
+            </div>
+        </fieldset>
+        <div class="my-3 text-center">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

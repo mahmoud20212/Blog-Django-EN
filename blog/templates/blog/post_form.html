@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<div class="content-section">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="border-bottom mb-4">Blog Post</legend>
+            <div class="form-outline">
+                <input type="text" id="title" name="title" class="form-control form-control-lg" value="{% if form.title.value %} {{form.title.value}} {% endif %}" />
+                <label class="form-label" for="formControlLg">Title</label>
+            </div>
+            <small class="text-muted">The title should not be more than 100 characters</small>
+            <div class="form-outline mb-4 mt-4">
+                <textarea class="form-control" id="content" name="content" rows="4">{% if form.content.value %} {{form.content.value}} {% endif %}</textarea>
+                <label class="form-label" for="formControlLg">Content</label>
+            </div>
+        </fieldset>
+        <div class="my-3 text-center">
+            <button class="btn btn-primary" type="submit">Post</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<style>
+  .form-group{
+    margin-bottom: 18px;
+  }
+</style>
+<div class="content-section">
+  <form action="" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend class="border-bottom mb-4">Join Today</legend>
+      <div class="form-outline">
+        <input type="text" id="username" name="username" class="form-control form-control-lg" />
+        <label class="form-label" for="formControlLg">Username</label>
+      </div>
+      {% if form.username.errors %}
+        <small class="text-danger"><strong>{{form.username.errors}}</strong></small>
+      {% endif %}
+      <small class="text-muted">{{form.username.help_text}}</small>
+      <div class="form-outline mt-4">
+        <input type="text" id="email" name="email" class="form-control form-control-lg" required />
+        <label class="form-label" for="formControlLg">Email</label>
+      </div>
+      {% if form.email.errors %}
+        <small class="text-danger"><strong>{{form.email.errors}}</strong></small>
+      {% endif %}
+      <div class="form-outline mt-4">
+        <input type="password" id="password1" name="password1" class="form-control form-control-lg" required />
+        <label class="form-label" for="formControlLg">Password</label>
+      </div>
+      {% if form.password2.errors %}
+        <small class="text-danger"><strong>{{form.password2.errors}}</strong></small>
+      {% endif %}
+      <div class="form-outline mt-4">
+        <input type="password" id="password2" name="password2" class="form-control form-control-lg" required />
+        <label class="form-label" for="formControlLg">Confirm Password</label>
+      </div>
+    </fieldset>
+    <div class="my-3 text-center">
+      <button class="btn btn-primary" type="submit">Sign up</button>
+    </div>
+  </form>
+  <div class="border-top pt-3">
+    <small class="text-muted">Already Have An Account ? <a class="ml-2" href="{% url 'login' %}">Login</a></small>
+  </div>
+</div>
+{% endblock %}

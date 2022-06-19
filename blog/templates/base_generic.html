@@ -1,9 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+    <!-- CSS File -->
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
     {% if title %}
         <title>Django Blog - {{title}}</title>
     {% else %}
@@ -11,7 +20,39 @@
     {% endif %}
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <!--  Start Navbar -->
+    {% include 'navbar.html' %}
+    <!-- End Navbar -->
+    <!-- Start Content -->
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                    {% for msg in messages %}
+                    <div class="alert alert-{{msg.tags}}">{{msg}}</div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Our Sidebar</h3>
+                    <p class="text-muted">You can put any information here you'd like.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-light">Hello worlds</li>
+                        <li class="list-group-item list-group-item-light">Hello worlds</li>
+                        <li class="list-group-item list-group-item-light">Hello worlds</li>
+                        <li class="list-group-item list-group-item-light">Hello worlds</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End Content -->
+    <!-- MDB -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
 </body>
 </html>

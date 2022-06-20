@@ -42,3 +42,6 @@ def profile(request):
         'p_form': p_form,
     }
     return render(request, 'users/profile.html', context)
+
+def mysettings(request):
+    return render(request, 'users/settings.html')
